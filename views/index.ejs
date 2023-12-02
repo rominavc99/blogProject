@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+  <%- include("partials/header.ejs") %>
+  <main class="container">
+    <section class="container">
+      <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1 class="display-4 fw-bold text-body-emphasis">My Blogs</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">
+            Share your stories quick and easy, engage with your own community.
+          </p>
+        </div>
+        <div class="overflow-hidden" style="max-height: 30vh">
+          <div class="container px-5">
+            <img
+              src="images/hero.gif"
+              class="img-fluid border rounded-3 shadow-lg mb-4"
+              alt="Example image"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container row d-flex">
+        <div class="h-100 col p-5 m-5 text-bg-dark rounded-3">
+          <h2>My programming journey</h2>
+          <p>
+            Through highs and lows I have been tyring to complete this project,
+            sometimes while getting a sudden rush of energy and blasting through
+            modules, and then ghosting Udemy for three months.
+          </p>
+          <a
+            href="#programmingJourney"
+            class="btn btn-outline-light"
+            type="button"
+          >
+            Take me there
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container p-5">
+      <h1>Latest blog entries</h1>
+      <div class="card-group">
+        <div class="card">
+          <div class="card-body">
+            <h5 id="programmingJourney" class="card-title">
+              My programming journey
+            </h5>
+            <p class="card-text">
+              Through highs and lows I have been tyring to complete this
+              project, sometimes while getting a sudden rush of energy and
+              blasting through modules, and then ghosting Udemy for three
+              months.
+            </p>
+            <p class="card-text">
+              At this moment I am commited to finishing this course before 2024
+              hits the door.
+            </p>
+          </div>
+          <div class="card-footer">
+            <small class="text-body-secondary"> Autor: Romina Verdugo </small>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">My cats</h5>
+            <p class="card-text">
+              I have always loved cats. At my nana's house, we had a lot of
+              them. It was a big, old house in a really small town in Sonora,
+              Mexico. Our cats were outside cats, so having a ton of them didn't
+              represent a lot of issues.
+            </p>
+            <p class="card-text">
+              As time passed, my nana's health started to decrease, and she was
+              no longer able to live alone in that huge house. She moved into
+              the city with us.
+            </p>
+
+            <p class="card-text">
+              At that point, we didn't have that many cats living there anymore.
+              It seemed that cats disappeared at the same rate that I was losing
+              my childhood.
+            </p>
+
+            <p class="card-text">
+              Currently, there are no cats living in that house anymore, and my
+              nana is no longer here either. I wonder if she lives in a really
+              huge house in a really small town in Heaven, and if all of our
+              cats are living there too.
+            </p>
+          </div>
+          <div class="card-footer">
+            <small class="text-body-secondary"> Autor: Romina Verdugo </small>
+          </div>
+        </div>
+      </div>
+
+      <% if (userPosts.length > 0) { %> <% for (let i = 0; i < userPosts.length;
+      i += 2) { %>
+      <div class="card-group">
+        <% for (let j = i; j < i + 2 && j < userPosts.length; j++) { %>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= userPosts[j].blogTitle %></h5>
+            <p class="card-text"><%= userPosts[j].blogContent %></p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <small class="text-body-secondary">
+              Autor: <%= userPosts[j].blogAutor %>
+            </small>
+            <div class="d-flex">
+              <a href="/edit/<%= j %>" class="btn m-2 btn-outline-dark">
+                Editar
+              </a>
+              <form action="/delete/<%= j %>?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button class="btn m-2 btn-danger" type="submit">
+                  Eliminar
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+      <% } %> <% } %>
+    </section>
+  </main>
+  <%- include("partials/footer.ejs") %>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+</html>

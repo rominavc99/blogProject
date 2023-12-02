@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+  <%- include("partials/header.ejs") %>
+  <main class="container">
+    <form
+      action="/edit/<%= postToEdit.index %>"
+      method="POST"
+      class="container p-5"
+      id="editForm"
+    >
+      <div class="mb-3">
+        <input type="hidden" name="_method" value="PATCH" />
+        <label for="inputTitle" class="form-label">Blog Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputTitle"
+          name="inputTitle"
+          value="<%= postToEdit.blogTitle %>"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <input
+          type="text"
+          class="form-control"
+          id="content"
+          name="content"
+          value="<%= postToEdit.blogContent %>"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="content" class="form-label">Autor</label>
+        <input
+          type="title"
+          class="form-control"
+          id="autor"
+          name="autor"
+          value="<%= postToEdit.blogAutor %>"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+  </main>
+  <%- include("partials/footer.ejs") %>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+</html>
